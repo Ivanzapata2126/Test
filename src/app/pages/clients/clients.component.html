@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col">
+        <button class="btn btn-primary" routerLink="/cliente/nuevo">
+            <i class=" fa fa-plus "></i>
+            Agregar
+        </button>
+    </div>
+</div>
+
+<table class="table mt-3 animated fadeIn faster">
+    <thead class="table-dark ">
+        <tr>
+            <th scope="col" class="text-center">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Nacionalidad ID</th>
+            <th scope="col">Zip code</th>
+            <th scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of this._mensajeriaService.clients;let i = index">
+            <td scope="row">{{cliente.id}}</td>
+            <td>{{cliente.name}}</td>
+            <td>{{cliente.lastName}}</td>
+            <td>{{cliente.address}}</td>
+            <td>{{cliente.nationalId}}</td>
+            <td>{{cliente.zipCode}}</td>
+            <td>
+                <button class="btn btn-info " [routerLink]="['/cliente', cliente.id]">
+                    <i class="fa fa-pen"></i>
+                </button>
+                <button class="btn btn-danger" (click)="deleteClients(cliente.id,i)">
+                <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
