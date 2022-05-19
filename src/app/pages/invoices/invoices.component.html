@@ -1,0 +1,125 @@
+<div class="row boton">
+    <div class="col">
+        <button class="btn btn-danger" routerLink="/clientes">
+            <i class="fa fa-arrow-left"></i>
+            Volver
+        </button>
+        <button class="btn btn-secondary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fa fa-plus"></i>
+            Nuevo track
+        </button>
+        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+            <i class="fa fa-eye"></i>
+            Ver tracks
+        </button>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="staticBackdropLabel">Agregar nuevo track</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div ngModelGroup="track">
+                        <label>Origen</label>
+                        <input type="text" placeholder="Lugar de origen" name="origen" [(ngModel)]="track.origin" class="form-control forma">
+                        <div>
+                            <label>Destino</label>
+                            <input type="text" placeholder="Lugar de destino" name="destino" [(ngModel)]="track.destiny" class="form-control forma">
+                        </div>
+                        <div>
+                            <label>Costo</label>
+                            <input type="number" placeholder="Costo del track" name="costo" [(ngModel)]="track.cost" class="form-control forma">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" (click)="createTrack(track)" (click)="reload()">Crear</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="staticBackdropLabel">Listado de tracks</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table mt-3 animated fadeIn faster">
+                    <thead class="table-dark ">
+                        <tr class="text-center">
+                            <th scope="col">Origen</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Costo</th>
+                            <th scope="col">Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let track of tracks;let i = index" class="text-center">
+                            <td scope="row">{{track.origin}}</td>
+                            <td>{{track.destiny}}</td>
+                            <td>{{track.cost}}</td>
+                            <td class="boton">
+                                <button class="btn btn-danger" (click)="borrarTrack(track.id,i)">
+                                <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Salir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn faster">
+    <div class="col">
+        <div>
+            <div class="form-group">
+                <label>ID</label>
+                <input type="text" disabled class="form-control" name="id" placeholder="ID" [(ngModel)]="id">
+                <small class="form-text text-muted mb-2">Este campo no se puede cambiar</small>
+            </div>
+            <form [formGroup]="forma" (ngSubmit)="guardar()">
+                <div class="row">
+                    <div class="col">
+                        <table class="table">
+                            <tbody formArrayName="items">
+                                <tr *ngFor="let control of items.controls;let i=index" [formGroupName]="i">
+                                    <td class="form ">
+                                        <label>Nombre</label>
+                                        <input type="string" required class="form-control" formControlName="name" required placeholder="Nombre del paquete" name="name" />
+                                        <label>Precio</label>
+                                        <input type="number" required class="form-control" formControlName="price" required placeholder="Precio del paquete" name="price">
+                                        <label>TrackId</label>
+                                        <select type="number" required class="form-control " required formControlName="trackId" placeholder="TrackId del paquete" name="trackId">
+                                            <option selected >Seleccione una opcion</option>
+                                            <option *ngFor="let track of tracks" [value]="track.id">{{track.origin}} - {{track.destiny}}</option>
+                                        </select>
+                                        <button class="btn btn-danger" type="button" (click)="borrarPackage(i)">Borrar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-secondary mt-3 mb-5 btn-block" type="button" (click)="addItem()">Agregar package</button>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-primary w-25 " (click)="guardar() ">
+                    <i class="fa fa-save "></i>
+                    Guardar
+                </button>
+        </div>
+    </div>
+</div>

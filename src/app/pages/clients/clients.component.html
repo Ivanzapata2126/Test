@@ -2,15 +2,15 @@
     <div class="col">
         <button class="btn btn-primary" routerLink="/cliente/nuevo">
             <i class=" fa fa-plus "></i>
-            Agregar
+            Agregar cliente
         </button>
     </div>
 </div>
 
 <table class="table mt-3 animated fadeIn faster">
     <thead class="table-dark ">
-        <tr>
-            <th scope="col" class="text-center">ID</th>
+        <tr class="text-center">
+            <th scope="col">ID</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Direccion</th>
@@ -20,19 +20,25 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let cliente of this._mensajeriaService.clients;let i = index">
+        <tr *ngFor="let cliente of this._mensajeriaService.clients;let i = index" class="text-center">
             <td scope="row">{{cliente.id}}</td>
             <td>{{cliente.name}}</td>
             <td>{{cliente.lastName}}</td>
             <td>{{cliente.address}}</td>
             <td>{{cliente.nationalId}}</td>
             <td>{{cliente.zipCode}}</td>
-            <td>
-                <button class="btn btn-info " [routerLink]="['/cliente', cliente.id]">
+            <td class="boton">
+                <button class="btn btn-info" [routerLink]="['/cliente', cliente.id]">
                     <i class="fa fa-pen"></i>
                 </button>
                 <button class="btn btn-danger" (click)="deleteClients(cliente.id,i)">
                 <i class="fa fa-trash"></i>
+                </button>
+                <button class="btn btn-success" [routerLink]="['/facturas/nueva',cliente.id]">
+                    <i class=" fa fa-plus "></i>
+                </button>
+                <button class="btn btn-warning" [routerLink]="['/facturas',cliente.id]">
+                    <i class=" fa fa-eye "></i>
                 </button>
             </td>
         </tr>

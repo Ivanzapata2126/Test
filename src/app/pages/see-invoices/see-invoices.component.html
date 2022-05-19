@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col">
+        <button class="btn btn-danger" routerLink="/clientes">
+            <i class="fa fa-arrow-left"></i>
+            Volver
+        </button>
+    </div>
+</div>
+
+<table class="table mt-3 animated fadeIn faster">
+    <thead class="table-dark ">
+        <tr class="text-center">
+            <th scope="col">Date</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nacionalidad ID</th>
+            <th scope="col">Zip code</th>
+            <th scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center">
+            <td scope="row">{{cliente.id}</td>
+            <td>{{cliente.name}</td>
+            <td>{{cliente.lastName}</td>
+            <td>{{cliente.address}</td>
+            <td>{{cliente.nationalId}</td>
+            <td>{{cliente.zipCode}</td>
+            <td class="boton">
+                <button class="btn btn-danger ">
+                <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -6,19 +6,24 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ClientsComponent } from './pages/clients/clients.component';
 import { ClientComponent } from './pages/client/client.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InvoicesComponent } from './pages/invoices/invoices.component';
+import { SeeInvoicesComponent } from './pages/see-invoices/see-invoices.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientsComponent,
-    ClientComponent
+    ClientComponent,
+    InvoicesComponent,
+    SeeInvoicesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

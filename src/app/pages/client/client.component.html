@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label>Nacionalidad ID</label>
                 <input type="text" required class="form-control" placeholder="Este campo debe ser único" name="nacionalidad" [(ngModel)]="client.nationalId">
-                <small *ngIf="this.existe" class="text-danger">Nacionalidad ID ya existe!</small>
+                <small *ngIf="this.alerta && !this.editando" class="text-danger">Nacionalidad ID ya existe!</small>
             </div>
             <div class="form-group">
                 <label>Dirección</label>

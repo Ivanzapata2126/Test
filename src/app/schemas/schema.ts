@@ -5,20 +5,19 @@ export class Client {
     lastName: string;
     zipCode: number;
     address: string;
-    updatedAt: Date;
+    updatedAt?: Date;
 }
 
-export interface Invoice {
+export class Invoice {
     date:     Date;
-    total:    number;
-    client:   string;
-    packages: Package[];
+    clientId:   string;
+    items: Package[];
 }
 
-export interface Package {
+export class Package {
     name:    string;
     price:   number;
-    invoice: string;
+    trackId: string;
 }
 export interface Resultado {
     ok:           boolean;
@@ -32,9 +31,14 @@ export interface Item {
     createdAt:  Date;
     updatedAt:  Date;
     name:       string;
-    nationalId: number;
-    lastName:   string;
-    zipCode:    number;
-    address:    string;
+    origin:     string;
+    destiny:   string;
+    cost:        number;
+}
+
+export class Track {
+    origin: string;
+    destiny: string;
+    cost: number;
 }
 
